@@ -27,6 +27,7 @@ public class Game {
     private String word;   // the word to be guessed 
     private StringBuffer displayWord; // part of the word (if any) to show user
     private ArrayList<String> wordlist;  // list of words
+    private boolean errorFlag = false; // checks status of characters entered
     
     public Game() {
         word="computer";
@@ -50,7 +51,7 @@ public class Game {
     
     public void startNewGame() {
         state = 1;
-        word = "computer";
+        word = randomWord();
         createDisplayWord();
         
     }
@@ -63,8 +64,8 @@ public class Game {
      *        2 = bad guess.  continue game
      *        3 = bad guess.  Lost game.
      */
-    public int playGame(char guess) {
-            boolean correctGuess = updateDisplayWord(guess);
+    public int playGame(char guess) {    
+        boolean correctGuess = updateDisplayWord(guess);
             if (correctGuess==false) { 
                 state++;
                 if (state==7) {
@@ -73,6 +74,8 @@ public class Game {
                 } else {
                     return 2; // bad guess, continue
                 }
+            } else if (errorFlag==true) {
+               return 4; // user has entered a bad character
             } else if ( displayWord.indexOf("_") >= 0) {
                return 0; // continue game, with good guess
             } else {
@@ -88,12 +91,33 @@ public class Game {
      */
     private boolean updateDisplayWord(char guess){
         boolean correctGuess = false;
+        errorFlag=false;
+        int len=String.valueOf(guess).length();
+       
+        if(Character.isLetter(guess) && Character.isUpperCase(guess)){
+            guess=Character.toLowerCase(guess);
+        }
+                
+        if(!Character.isLetter(guess)){
+            correctGuess=true;
+            errorFlag=true;
+        }
+        
+        if(len!=1){
+            errorFlag=true;
+            correctGuess=true;
+        }
+        
         for (int i=0; i<word.length(); i++) {
             if (word.charAt(i)==guess){
                     displayWord.replace(2*i, 2*i+1, Character.toString(guess)); 
                     correctGuess=true;
                 }
         }
+        
+      //  for (int i=0; i<word.length(); i++) {
+      //      if (Character.isLetter(guess))
+      //  }
         return correctGuess;
         
     }
