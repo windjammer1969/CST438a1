@@ -101,6 +101,7 @@ public class Game {
         if(!Character.isLetter(guess)){
             correctGuess=true;
             errorFlag=true;
+            return correctGuess;
         }
         
         if(len!=1){
