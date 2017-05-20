@@ -63,7 +63,6 @@ public class GameTest {
         Game instance = new Game();
         String expResult = "computer";
         String result = instance.getWord();
-        System.out.println(expResult + " " + result);
         assertEquals(expResult, result);
     }
 
@@ -109,44 +108,39 @@ public class GameTest {
         System.out.println("playGame");
         char guess = 'c';
         Game instance = new Game();
-        int result = instance.playGame(guess);
         int expResult = 0;
+        int result = instance.playGame(guess);
         assertEquals(expResult, result);
-        result = instance.playGame('4');
-        assertEquals(4, result);
-        result = instance.playGame('$');
-        assertEquals(4, result);
-        result = instance.playGame('&');
-        assertEquals(4, result);
-        
+        result = instance.playGame('d');
+        assertEquals(2, result);
+        result = instance.playGame('f');
+        assertEquals(2, result);
+        result = instance.playGame('g');
+        assertEquals(2, result);
+        result = instance.playGame('h');
+        assertEquals(2,result);
+        result = instance.playGame('j');
+        assertEquals(2,result);
+        result = instance.playGame('k');
+        assertEquals(3,result);
+ 
         instance.startNewGame();
-        System.out.println(instance.word);
-        for(int i = 0; i < 2; i++){
-            if (i < instance.word.length()){
-                result = instance.playGame(instance.word.charAt(i));
-                System.out.println(instance.word);
-                assertEquals(0,result);
-            }
-            else if (i == instance.word.length()){
-                result = instance.playGame(instance.word.charAt(i));
-                assertEquals(1,result);
-            }
-        }
-        
-        instance.startNewGame();
-        for(int i = 0; i < 2;){
-                char r = (char)('a'+ Math.random()* ('z'-'a'+1));
-                int counter = 0;
-                result = instance.playGame(r);
-                for(int p=0; p < instance.word.length();p++){
-                    if(instance.word.charAt(p) == r)
-                        counter++;
-                }
-                if (counter == 0){
-                    assertEquals(2, result);
-                    i++;
-                }
-            }
+        result = instance.playGame('c');
+        assertEquals(0,result);
+        result = instance.playGame('o');
+        assertEquals(0,result);
+        result = instance.playGame('m');
+        assertEquals(0,result);
+        result = instance.playGame('p');
+        assertEquals(0,result);
+        result = instance.playGame('u');
+        assertEquals(0,result);
+        result = instance.playGame('t');
+        assertEquals(0,result);
+        result = instance.playGame('e');
+        assertEquals(0,result);
+        result = instance.playGame('r');
+        assertEquals(1,result);
     }
     
 }
