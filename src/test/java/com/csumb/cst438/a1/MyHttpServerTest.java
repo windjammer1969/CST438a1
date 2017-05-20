@@ -66,7 +66,6 @@ public class MyHttpServerTest {
         handler.handle(t);
         // check response for cookie returned, response code=200, and expected response body 
         Headers response = t.getResponseHeaders();
-        System.out.println();
         String cookie1 = response.getFirst("Set-cookie");
         assertEquals("Bad content type", "text/html", response.getFirst("Content-type"));
         assertNotNull("No cookie returned", cookie1);
@@ -74,10 +73,10 @@ public class MyHttpServerTest {
         //Was initially set to equals, however this should only be triggered if expectedBody and t.getOsteam are NOT equal to one another.
         Assert.assertThat(t.getOstream().toString(),CoreMatchers.containsString(expectedBody));
         Assert.assertThat(t.getOstream().toString(),CoreMatchers.containsString(expectedBody2));
-        assertEquals("Bad response body.",expectedBody, t.getOstream().toString());
     } catch (Exception e) {
         fail("unexpected exception in testHandle "+e.getMessage());
     }
+    
     Headers giffy1 = new Headers();
     try{
     TestHttpExchange t = new TestHttpExchange("/h1.gif", giffy1);
@@ -103,7 +102,7 @@ public class MyHttpServerTest {
     assertEquals("Bad content type", null, response.getFirst("Content-type"));
     } catch (Exception e) {
         fail("unexpected exception in testHandle "+e.getMessage());
-}
+    }
     
 }
 }
