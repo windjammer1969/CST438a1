@@ -105,18 +105,5 @@ public class MyHttpServerTest {
         fail("unexpected exception in testHandle "+e.getMessage());
     }
     
-        Headers giffy2 = new Headers();
-    try{
-    TestHttpExchange t = new TestHttpExchange("/h9.gif", giffy2);
-    MyHttpServer.MyHandler handler = new MyHttpServer.MyHandler();
-    handler.handle(t);
-    // check response for expect output
-    Headers response = t.getResponseHeaders();
-    assertEquals("Bad content type", null, response.getFirst("Content-type"));
-    } catch (Exception e) {
-        fail("unexpected exception in testHandle "+e.getMessage());
-    }
-    
-}
 }
 }
