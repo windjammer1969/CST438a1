@@ -74,6 +74,7 @@ public class MyHttpServerTest {
         //Was initially set to equals, however this should only be triggered if expectedBody and t.getOsteam are NOT equal to one another.
         Assert.assertThat(t.getOstream().toString(),CoreMatchers.containsString(expectedBody));
         Assert.assertThat(t.getOstream().toString(),CoreMatchers.containsString(expectedBody2));
+        assertEquals("Bad response body.",expectedBody, t.getOstream().toString());
     } catch (Exception e) {
         fail("unexpected exception in testHandle "+e.getMessage());
     }
@@ -102,7 +103,7 @@ public class MyHttpServerTest {
     assertEquals("Bad content type", null, response.getFirst("Content-type"));
     } catch (Exception e) {
         fail("unexpected exception in testHandle "+e.getMessage());
-    }
+}
     
 }
 }
