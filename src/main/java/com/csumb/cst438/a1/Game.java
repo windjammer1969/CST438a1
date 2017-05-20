@@ -24,10 +24,11 @@ public class Game {
                    //  6 means 5 incorrect guesses.
 	           //  7 means 6 incorrect guesses, user has lost game
     
-    private String word;   // the word to be guessed 
+    public String word;   // the word to be guessed 
     private StringBuffer displayWord; // part of the word (if any) to show user
     private ArrayList<String> wordlist;  // list of words
     private boolean errorFlag = false; // checks status of characters entered
+    public String newword;
     
     public Game() {
         word="computer";
@@ -49,11 +50,11 @@ public class Game {
         return displayWord.toString();
     }
     
+    
     public void startNewGame() {
         state = 1;
         word = randomWord();
-        createDisplayWord();
-        
+        createDisplayWord();  
     }
     
     /*
@@ -64,7 +65,7 @@ public class Game {
      *        2 = bad guess.  continue game
      *        3 = bad guess.  Lost game.
      */
-    public int playGame(char guess) {    
+    public int playGame(char guess) {
         boolean correctGuess = updateDisplayWord(guess);
             if (correctGuess==false) { 
                 state++;
@@ -140,7 +141,7 @@ public class Game {
      * 
      * @return a word from the list
      */
-    private String randomWord() {
+    public String randomWord() {
 	try {
             if (wordlist == null) {
 		wordlist = new ArrayList<String>();

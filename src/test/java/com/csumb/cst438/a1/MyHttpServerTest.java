@@ -66,6 +66,7 @@ public class MyHttpServerTest {
         handler.handle(t);
         // check response for cookie returned, response code=200, and expected response body 
         Headers response = t.getResponseHeaders();
+        System.out.println();
         String cookie1 = response.getFirst("Set-cookie");
         assertEquals("Bad content type", "text/html", response.getFirst("Content-type"));
         assertNotNull("No cookie returned", cookie1);
@@ -104,5 +105,18 @@ public class MyHttpServerTest {
         fail("unexpected exception in testHandle "+e.getMessage());
     }
     
+        Headers giffy2 = new Headers();
+    try{
+    TestHttpExchange t = new TestHttpExchange("/h9.gif", giffy2);
+    MyHttpServer.MyHandler handler = new MyHttpServer.MyHandler();
+    handler.handle(t);
+    // check response for expect output
+    Headers response = t.getResponseHeaders();
+    assertEquals("Bad content type", null, response.getFirst("Content-type"));
+    } catch (Exception e) {
+        fail("unexpected exception in testHandle "+e.getMessage());
+    }
+    
+}
 }
 }
